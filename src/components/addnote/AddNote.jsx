@@ -1,19 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from 'react-router-dom';
+import NoteContext from '../../context/notes/NoteContext';
 import "./AddNote.css";
 
 const AddNote = () => {
+  const context = useContext(NoteContext);
+  const { addNote } = context;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [tag, setTag] = useState("");
   const navigate = useNavigate();
   const handleCloseClick = () => navigate(-1);
+  const handleAddClick = (e) => {
+    e.preventDefault();
+    addNote(title, description, tag);
+    navigate("/");  
+  };
   return (
     <div className="d-flex justify-content-center mt-4">
       <div className="card bg-light" style={{ width: "40rem" }}>
         <div className="d-flex justify-content-between">
           <h3 className="mx-2 mt-2">Add a note</h3>
-          <button type="button" class="btn-close mx-2 mt-2" aria-label="Close" onClick={handleCloseClick}></button>
+          <button type="button" id = "close-button" className="btn-close mx-2 mt-2" aria-label="Close" onClick={handleCloseClick}></button>
         </div>
         <hr />
         <div className="container">
@@ -34,6 +42,7 @@ const AddNote = () => {
                 className="custom-textarea"
                 id="description"
                 rows="5"
+                cols={70}
                 placeholder="Enter description"
                 value={description}
                 onChange={(e) => setDescription(e.target.value)}
@@ -50,11 +59,10 @@ const AddNote = () => {
                 onChange={(e) => setTag(e.target.value)}
               />
             </div>
-            <input
-              type="submit"
-              value="Add Note"
+            <button
               className="btn btn-primary mb-3"
-            />
+              onClick={handleAddClick}
+            >Add Note</button>
           </form>
         </div>
       </div>
