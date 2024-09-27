@@ -1,0 +1,28 @@
+.custom-input {
+  border: none; /* Remove border */
+  outline: none; /* Remove focus outline */
+  background: none; /* Remove background */
+  box-shadow: none; /* Remove any shadow */
+  font-size: 16px; /* Adjust input text size */
+  padding: 5px; /* Optional: add padding */
+}
+
+.custom-input::placeholder {
+  font-size: 20px; /* Increase placeholder text size */
+  color: #aaa; /* Optionally change placeholder color */
+}
+
+.custom-textarea {
+  border: none; /* Remove border */
+  outline: none; /* Remove focus outline */
+  background: none; /* Remove background */
+  box-shadow: none; /* Remove any shadow */
+  font-size: 16px; /* Adjust text size */
+  padding: 10px; /* Optional: add padding */
+  resize: none; /* Optional: disable resizing */
+}
+
+.custom-textarea::placeholder {
+  font-size: 20px; /* Increase placeholder text size */
+  color: #aaa; /* Optionally change placeholder color */
+}
