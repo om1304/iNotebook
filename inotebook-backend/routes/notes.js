@@ -25,11 +25,14 @@ router.post(
   ],
   async (req, res) => {
     try {
-      const {title, description, tag} = req.body;
+      let {title, description, tag} = req.body;
       const errors = validationResult(req);
       //if there are errors return bad request and error.
       if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
+      }
+      if (tag === ""){
+        tag = "general"
       }
       const note = new Notes({title, description, tag, user: req.user.id});
       const savedNote = await note.save();

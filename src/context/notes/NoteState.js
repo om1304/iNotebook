@@ -83,10 +83,40 @@ const NoteState = (props) => {
     }
   };
 
-  //TODO: pending update note integreation with api 
+  //TODO: pending update note integreation with api
+  const updateNote = async (id, title, description, tag) => {
+    const url = `${host}/api/notes/updatenote/${id}`;
+    const updatedNote = {
+      title,
+      description,
+      tag,
+    };
+    try {
+      const response = await fetch(url, {
+        method: "PUT",
+        headers: {
+          "auth-token":
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNjZlZWI3NWEzYTYwNGQyMGM5YmU5MzMxIn0sImlhdCI6MTcyNzAzMjY5NH0.PsHy_vOYoxdVboxBeRhlxIdLHxCYIpzx96Sv-LUuE7o",
+          "Content-Type": "application/json",
+        },
+        // Convert the note object to a JSON string for the body
+        body: JSON.stringify(updatedNote),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+
+      await getAllNotes();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   return (
-    <NoteContext.Provider value={{ notes, addNote, deleteNote, getAllNotes }}>
+    <NoteContext.Provider
+      value={{ notes, addNote, deleteNote, getAllNotes, updateNote }}
+    >
       {props.children}
     </NoteContext.Provider>
   );

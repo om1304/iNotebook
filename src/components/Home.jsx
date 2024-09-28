@@ -11,7 +11,7 @@ const Home = () => {
       <h1 className="text-center">Welcome to iNotebook</h1>
       <Notes/>
       <div className="d-flex justify-content-center align-items-end">
-        <button className="btn btn-primary mt-4" style={{borderRadius:20,}}onClick={handleClick}><AddNoteIcon /> Add Note</button>
+        <button className="btn btn-dark mt-4" style={{borderRadius:20,}}onClick={handleClick}><AddNoteIcon /> Add Note</button>
       </div>
     </div>
   )

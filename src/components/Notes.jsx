@@ -14,7 +14,7 @@ const Notes = () => {
     <div>
       <h2 className='mt-2'>Your Notes:</h2>
       <div className="row">
-      {notes.map(note => {
+      {notes.length === 0 ? <h3 className='text-center'>No Notes found</h3> : notes.map(note => {
         return <NoteItem key={note._id} note={note}/>;
       })}
       </div>
